@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>売り一覧</title>
+    <link rel="stylesheet" type="text/css" href="/src/main/resources/static/css/zaiko.css">
+</head>
+<body>
+    <h1 th:text="${title}"></h1>
+    <h6 th:text="${shohin.hinmei}"></h6>
+    <table th:if="${list.size>0}" border="1">
+        <tr>
+            <th>id</th>
+            <th>数量</th>
+            <th>単価</th>
+            <th>日</th>
+            <th>削除</th>
+            <th>編集</th>
+        </tr>
+        <tr th:each="s: ${list}">
+            <td th:text="${s.id}"></td>
+            <td th:text="${s.sellQuantity}"></td>
+            <td th:text="${s.sellPrice}"></td>
+            <td th:text="${s.sellTime}"></td>
+            <td>
+                <a th:href="@{/sell/{shohinId}/delete/{id}(shohinId=${shohin.id},id=${s.id})}"
+                   th:onclick="return confirm('本当に削除しますか？');">削除</a>
+            </td>
+            <td>
+                <a th:href="@{/sell/{shohinId}/change/{id}(shohinId=${shohin.id},id=${s.id})}">編集</a>
+            </td>
+        </tr>
+    </table>
+    <p><a th:href="@{/sell/{shohinId}/addSell(shohinId=${shohin.id})}">追加</a></p>
+    <p><a th:href="@{/}">mainMenu</a></p>
+</body>
+</html>

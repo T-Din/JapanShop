@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<h1 th:text="${title}"></h1>
+<div>品名<p th:text="${shohin.hinmei}"></p></div>
+<div>原価<p th:text="${shohin.genka}"></p></div>
+<div>在庫: <p th:text="${shohin.zaiko()}"></p>
+<div>メーモ<p th:text="${shohin.memo}"></p></div>
+</body>
+</html>

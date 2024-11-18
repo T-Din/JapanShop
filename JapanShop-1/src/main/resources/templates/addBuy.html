@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/add.css">
+</head>
+<body>
+    <h1 th:text="${title}"></h1>
+    <form th:action="@{/buy/{shohinId}/addBuy(shohinId=${shohin.id})}" th:object="${buyForm}" method="post">
+        <input type="hidden" name="shohinId" value="${shohin.id}"/>
+        <input th:if="${title == '仕入れ編集'}" type="hidden" name="id" th:field="*{id}" />
+        <p>数量: <input type="text" th:field="*{buyQuantity}" required /></p>
+        <p>割引後: <input type="text" th:field="*{buyPrice}" required /></p>
+        <p>日: <input type="text" th:field="*{buyTime}" required/></p>
+        <input type="submit" th:if="${title == '仕入れ編集'}" value="編集" />
+        <p><input type="submit" th:if="${title != '仕入れ編集'}" value="送信" /></p>
+    </form>
+</body>
+</html>
